@@ -4,8 +4,199 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        const apartments = [
+  {
+    id: 1,
+    apartmentName: "Green View Apartment",
+    roomCount: 3,
+    floor: "5th",
+    details: "Spacious rooms with balcony, near park."
+  },
+  {
+    id: 2,
+    apartmentName: "Sunrise Towers",
+    roomCount: 2,
+    floor: "3rd",
+    details: "Modern apartment with gym access."
+  },
+  {
+    id: 3,
+    apartmentName: "Lakewood Residency",
+    roomCount: 4,
+    floor: "7th",
+    details: "Lake-facing apartment with large windows."
+  },
+  {
+    id: 4,
+    apartmentName: "Hilltop Heights",
+    roomCount: 3,
+    floor: "6th",
+    details: "Panoramic view with rooftop access."
+  },
+  {
+    id: 5,
+    apartmentName: "Skyline Plaza",
+    roomCount: 2,
+    floor: "2nd",
+    details: "Near shopping mall and public transport."
+  },
+  {
+    id: 6,
+    apartmentName: "Palm Court",
+    roomCount: 1,
+    floor: "1st",
+    details: "Budget-friendly with garden access."
+  },
+  {
+    id: 7,
+    apartmentName: "Cityscape Towers",
+    roomCount: 3,
+    floor: "4th",
+    details: "Includes parking and 24/7 security."
+  },
+  {
+    id: 8,
+    apartmentName: "Ocean Breeze Villas",
+    roomCount: 5,
+    floor: "Ground",
+    details: "Luxury apartment near the beach."
+  },
+  {
+    id: 9,
+    apartmentName: "The Urban Nest",
+    roomCount: 2,
+    floor: "3rd",
+    details: "Smart home features included."
+  },
+  {
+    id: 10,
+    apartmentName: "Crystal Heights",
+    roomCount: 4,
+    floor: "8th",
+    details: "Fully furnished with mountain view."
+  }
+];
+
+        
+        </script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            background-color: #f7f7f7;
+        }
+        .heading{
+            font-size: 100px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .apartment-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.apartment-table thead {
+  background-color: #f4f4f4;
+}
+
+.apartment-table th,
+.apartment-table td {
+  text-align: left;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+}
+
+.apartment-table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.details-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.details-button:hover {
+  background-color: #0056b3;
+}
+.container{
+    max-width: 1440px;
+    margin: 0px auto;
+}
+.apartment-card{
+    height: 250px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+
+}
+.apartment-img{
+    width: 100%;
+}
+.apartment-table tr{
+    position: relative;
+}
+    </style>
 </head>
 <body>
-    
+    <main class='container'>
+        <h2 class="heading">A Table</h2>
+        <table class="apartment-table">
+            <thead>
+              <tr>
+                <th>Apartment Name</th>
+                <th>Room Count</th>
+                <th>Floor</th>
+                <th>Details</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="apartment-body">
+        
+        
+            </tbody>
+          </table>
+          <div class="apartment-card">
+            <div>
+                <img class="apartment-img" src="./assets/1.jpg" alt="">
+            </div>
+            <div>
+                <h4>Apartment Name</h4>
+                <p>Room Count</p>
+                <p>Details</p>
+            </div>
+          </div>
+    </main>
 </body>
+<script>
+const apartmentBody =document.getElementById('apartment-body')
+apartments.map(apartment=>
+   {
+    let tr =document.createElement('tr');
+
+        tr.innerHTML=` <td>${apartment.apartmentName}</td>
+                <td>${apartment.roomCount}</td>
+                <td>${apartment.floor}</td>
+                <td>${apartment.details}</td>
+                <td>
+                  <button class="details-button">Show Details</button>
+                </td>`
+        apartmentBody.appendChild(tr)
+   }
+)
+const testButton =document.querySelector('.details-button')
+
+
+</script>
 </html>
