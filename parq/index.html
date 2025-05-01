@@ -165,6 +165,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 999;
+    pointer-events: none;
   }
 
   .apartment-img-container {
@@ -191,6 +192,7 @@
     font-size: 14px;
     color: #555;
   }
+
     </style>
 </head>
 <body>
@@ -203,7 +205,7 @@
                 <th>Room Count</th>
                 <th>Floor</th>
                 <th>Details</th>
-                <th>Action</th>
+               
               </tr>
             </thead>
             <tbody id="apartment-body">
@@ -228,26 +230,25 @@ const apartmentBody =document.getElementById('apartment-body')
 apartments.map(apartment=>
    {
     let tr =document.createElement('tr');
-
+    tr.classList.add('apartment-tr');
+    tr.setAttribute('apartmentNo', apartment.id);
         tr.innerHTML=` <td>${apartment.apartmentName}</td>
                 <td>${apartment.roomCount}</td>
                 <td>${apartment.floor}</td>
                 <td>${apartment.details}</td>
-                <td>
-                  <button apartmentNo='${apartment.id}' class="details-button">Show Details</button>
-                </td>`
+             `
         apartmentBody.appendChild(tr)
    }
 )
 //  to show the card
-const testButtons =document.querySelectorAll('.details-button')
+const tableRows =document.querySelectorAll('.apartment-tr')
 // const apartmentCard =document.querySelector('.apartment-card')
-testButtons.forEach(testButton=>{
-    testButton.addEventListener('mouseenter', () => {
-       const apartmentNumber= testButton.getAttribute('apartmentNo')
-        //console.log(apartmentNumber)
+tableRows.forEach(tableRow=>{
+    tableRow.addEventListener('mouseenter', () => {
+       const apartmentNumber= tableRow.getAttribute('apartmentNo')
+
       const apartmentCardDetails = apartments.find(apartment=>apartment.id==apartmentNumber)
-      //console.log(apartmentCardDetails)
+
       
     // Create the card
     apartmentCard = document.createElement('div');
@@ -264,14 +265,21 @@ testButtons.forEach(testButton=>{
       </div>
     `;
 
-    // Positioning the card relative to the button
     apartmentCard.style.position = 'absolute';
-    apartmentCard.style.top = `${testButton.offsetTop + testButton.offsetHeight + 5}px`;
-    apartmentCard.style.right = `${testButton.offsetLeft}px`;
+
+// Position the card on top of the table row
+apartmentCard.style.top = `${tableRow.offsetTop - apartmentCard.offsetHeight - 250}px`; // 5px gap above
+
+// Center it horizontally relative to the table row
+const rowCenter =  tableRow.offsetWidth / 2;
+const cardWidth = apartmentCard.offsetWidth;
+apartmentCard.style.left = `${rowCenter - cardWidth / 2}px`;
+
+
 
     document.body.appendChild(apartmentCard);
   });
-  testButton.addEventListener('mouseleave', () => {
+  tableRow.addEventListener('mouseleave', () => {
     if (apartmentCard) {
       apartmentCard.remove();
     }
