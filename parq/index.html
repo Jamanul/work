@@ -11,70 +11,80 @@
     apartmentName: "Green View Apartment",
     roomCount: 3,
     floor: "5th",
-    details: "Spacious rooms with balcony, near park."
+    details: "Spacious rooms with balcony, near park.",
+    src:"./assets/1.jpg"
   },
   {
     id: 2,
     apartmentName: "Sunrise Towers",
     roomCount: 2,
     floor: "3rd",
-    details: "Modern apartment with gym access."
+    details: "Modern apartment with gym access.",
+    src:"./assets/2.jpg"
   },
   {
     id: 3,
     apartmentName: "Lakewood Residency",
     roomCount: 4,
     floor: "7th",
-    details: "Lake-facing apartment with large windows."
+    details: "Lake-facing apartment with large windows.",
+    src:"./assets/1.jpg"
   },
   {
     id: 4,
     apartmentName: "Hilltop Heights",
     roomCount: 3,
     floor: "6th",
-    details: "Panoramic view with rooftop access."
+    details: "Panoramic view with rooftop access.",
+    src:"./assets/2.jpg"
   },
   {
     id: 5,
     apartmentName: "Skyline Plaza",
     roomCount: 2,
     floor: "2nd",
-    details: "Near shopping mall and public transport."
+    details: "Near shopping mall and public transport.",
+    src:"./assets/1.jpg"
   },
   {
     id: 6,
     apartmentName: "Palm Court",
     roomCount: 1,
     floor: "1st",
-    details: "Budget-friendly with garden access."
+    details: "Budget-friendly with garden access.",
+    src:"./assets/2.jpg"
   },
   {
     id: 7,
     apartmentName: "Cityscape Towers",
     roomCount: 3,
     floor: "4th",
-    details: "Includes parking and 24/7 security."
+    details: "Includes parking and 24/7 security.",
+    src:"./assets/1.jpg"
   },
   {
     id: 8,
     apartmentName: "Ocean Breeze Villas",
     roomCount: 5,
     floor: "Ground",
-    details: "Luxury apartment near the beach."
+    details: "Luxury apartment near the beach.",
+    src:"./assets/2.jpg"
   },
   {
     id: 9,
     apartmentName: "The Urban Nest",
     roomCount: 2,
     floor: "3rd",
-    details: "Smart home features included."
+    details: "Smart home features included.",
+    src:"./assets/1.jpg"
   },
   {
     id: 10,
     apartmentName: "Crystal Heights",
     roomCount: 4,
     floor: "8th",
-    details: "Fully furnished with mountain view."
+    details: "Fully furnished with mountain view.",
+    src:"./assets/2.jpg"
   }
 ];
 
@@ -147,6 +157,40 @@
 .apartment-table tr{
     position: relative;
 }
+.apartment-card {
+    width: 250px;
+    padding: 12px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+
+  .apartment-img-container {
+    width: 100%;
+    height: 140px;
+    overflow: hidden;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+
+  .apartment-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .apartment-info h4 {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .apartment-info p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #555;
+  }
     </style>
 </head>
 <body>
@@ -167,7 +211,7 @@
         
             </tbody>
           </table>
-          <div class="apartment-card">
+          <!-- <div class="apartment-card">
             <div>
                 <img class="apartment-img" src="./assets/1.jpg" alt="">
             </div>
@@ -176,7 +220,7 @@
                 <p>Room Count</p>
                 <p>Details</p>
             </div>
-          </div>
+          </div> -->
     </main>
 </body>
 <script>
@@ -190,12 +234,50 @@ apartments.map(apartment=>
                 <td>${apartment.floor}</td>
                 <td>${apartment.details}</td>
                 <td>
-                  <button class="details-button">Show Details</button>
+                  <button apartmentNo='${apartment.id}' class="details-button">Show Details</button>
                 </td>`
         apartmentBody.appendChild(tr)
    }
 )
-const testButton =document.querySelector('.details-button')
+//  to show the card
+const testButtons =document.querySelectorAll('.details-button')
+// const apartmentCard =document.querySelector('.apartment-card')
+testButtons.forEach(testButton=>{
+    testButton.addEventListener('mouseenter', () => {
+       const apartmentNumber= testButton.getAttribute('apartmentNo')
+        //console.log(apartmentNumber)
+      const apartmentCardDetails = apartments.find(apartment=>apartment.id==apartmentNumber)
+      //console.log(apartmentCardDetails)
+      
+    // Create the card
+    apartmentCard = document.createElement('div');
+    apartmentCard.classList.add('apartment-card');
+    
+    apartmentCard.innerHTML = `
+      <div class="apartment-img-container">
+        <img class="apartment-img" src="${apartmentCardDetails.src}" alt="Apartment">
+      </div>
+      <div class="apartment-info">
+        <h4>${apartmentCardDetails.apartmentName}</h4>
+        <p>Room Count: ${apartmentCardDetails.roomCount}</p>
+        <p>Details: ${apartmentCardDetails.details}</p>
+      </div>
+    `;
+
+    // Positioning the card relative to the button
+    apartmentCard.style.position = 'absolute';
+    apartmentCard.style.top = `${testButton.offsetTop + testButton.offsetHeight + 5}px`;
+    apartmentCard.style.right = `${testButton.offsetLeft}px`;
+
+    document.body.appendChild(apartmentCard);
+  });
+  testButton.addEventListener('mouseleave', () => {
+    if (apartmentCard) {
+      apartmentCard.remove();
+    }
+  });
+})
+
 
 
 </script>
