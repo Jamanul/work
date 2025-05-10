@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tech Products</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container my-5">
+      <h2 class="mb-4 text-center">Tech Products</h2>
+
+      <!-- Search and Filters -->
+      <div class="row mb-4 g-2">
+        <div class="col-md-4">
+          <input
+            id="searchInput"
+            type="text"
+            class="form-control"
+            placeholder="Search by ID or Name"
+          />
+        </div>
+        <div class="col-md-4">
+          <select id="typeFilter" class="form-select">
+            <option value="">Filter by Type</option>
+            <option value="Monitor">Monitor</option>
+            <option value="Mouse">Mouse</option>
+            <option value="Keyboard">Keyboard</option>
+            <option value="TV">TV</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <select id="brandFilter" class="form-select">
+            <option value="">Filter by Brand</option>
+            <option value="Samsung">Samsung</option>
+            <option value="LG">LG</option>
+            <option value="Logitech">Logitech</option>
+            <option value="Sony">Sony</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div id="productContainer" class="row g-4"></div>
+    </div>
+
+    <!-- Bootstrap JS (optional for dropdowns) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // JSON product data
+      const products = [
+        {
+          id: 1,
+          name: 'UltraSharp 27" Monitor',
+          type: "Monitor",
+          price: 299.99,
+          brand: "LG",
+        },
+        {
+          id: 2,
+          name: "Pro Wireless Mouse",
+          type: "Mouse",
+          price: 49.99,
+          brand: "Logitech",
+        },
+        {
+          id: 3,
+          name: "Mechanical Gaming Keyboard",
+          type: "Keyboard",
+          price: 89.99,
+          brand: "Logitech",
+        },
+        {
+          id: 4,
+          name: 'Smart LED TV 55"',
+          type: "TV",
+          price: 499.99,
+          brand: "Samsung",
+        },
+        {
+          id: 5,
+          name: 'Slim Bezel 24" Monitor',
+          type: "Monitor",
+          price: 199.99,
+          brand: "Sony",
+        },
+        {
+          id: 6,
+          name: "Bluetooth Silent Mouse",
+          type: "Mouse",
+          price: 29.99,
+          brand: "LG",
+        },
+        {
+          id: 7,
+          name: "RGB Wired Keyboard",
+          type: "Keyboard",
+          price: 59.99,
+          brand: "Samsung",
+        },
+        {
+          id: 8,
+          name: '4K HDR Smart TV 65"',
+          type: "TV",
+          price: 799.99,
+          brand: "Sony",
+        },
+        {
+          id: 9,
+          name: "Curved QHD Monitor",
+          type: "Monitor",
+          price: 349.99,
+          brand: "Samsung",
+        },
+        {
+          id: 10,
+          name: "Ergonomic Mouse",
+          type: "Mouse",
+          price: 39.99,
+          brand: "Logitech",
+        },
+        {
+          id: 11,
+          name: "Backlit Gaming Keyboard",
+          type: "Keyboard",
+          price: 79.99,
+          brand: "LG",
+        },
+        {
+          id: 12,
+          name: 'Full HD Smart TV 43"',
+          type: "TV",
+          price: 349.99,
+          brand: "LG",
+        },
+        {
+          id: 13,
+          name: "Touchscreen Monitor",
+          type: "Monitor",
+          price: 279.99,
+          brand: "Sony",
+        },
+        {
+          id: 14,
+          name: "Wireless Gaming Mouse",
+          type: "Mouse",
+          price: 69.99,
+          brand: "Samsung",
+        },
+        {
+          id: 15,
+          name: "Compact Keyboard",
+          type: "Keyboard",
+          price: 49.99,
+          brand: "Sony",
+        },
+        {
+          id: 16,
+          name: 'LED TV 32"',
+          type: "TV",
+          price: 299.99,
+          brand: "Logitech",
+        },
+        {
+          id: 17,
+          name: "USB-C Portable Monitor",
+          type: "Monitor",
+          price: 229.99,
+          brand: "LG",
+        },
+        {
+          id: 18,
+          name: "Precision Optical Mouse",
+          type: "Mouse",
+          price: 24.99,
+          brand: "Logitech",
+        },
+        {
+          id: 19,
+          name: "Standard Office Keyboard",
+          type: "Keyboard",
+          price: 34.99,
+          brand: "Samsung",
+        },
+        {
+          id: 20,
+          name: "8K QLED Smart TV",
+          type: "TV",
+          price: 1499.99,
+          brand: "Samsung",
+        },
+        {
+          id: 21,
+          name: 'UltraWide 34" Monitor',
+          type: "Monitor",
+          price: 499.99,
+          brand: "LG",
+        },
+        {
+          id: 22,
+          name: "Silent Click Mouse",
+          type: "Mouse",
+          price: 19.99,
+          brand: "Sony",
+        },
+        {
+          id: 23,
+          name: "Wireless Mini Keyboard",
+          type: "Keyboard",
+          price: 44.99,
+          brand: "LG",
+        },
+        {
+          id: 24,
+          name: 'Smart LED TV 50"',
+          type: "TV",
+          price: 599.99,
+          brand: "Sony",
+        },
+        {
+          id: 25,
+          name: "HDR Gaming Monitor",
+          type: "Monitor",
+          price: 399.99,
+          brand: "Samsung",
+        },
+        {
+          id: 26,
+          name: "Multi-Device Mouse",
+          type: "Mouse",
+          price: 54.99,
+          brand: "LG",
+        },
+        {
+          id: 27,
+          name: "Mechanical RGB Keyboard",
+          type: "Keyboard",
+          price: 94.99,
+          brand: "Sony",
+        },
+        {
+          id: 28,
+          name: 'OLED Smart TV 48"',
+          type: "TV",
+          price: 749.99,
+          brand: "Logitech",
+        },
+        {
+          id: 29,
+          name: "IPS Display Monitor",
+          type: "Monitor",
+          price: 239.99,
+          brand: "Sony",
+        },
+        {
+          id: 30,
+          name: "Vertical Ergonomic Mouse",
+          type: "Mouse",
+          price: 64.99,
+          brand: "Samsung",
+        },
+        {
+          id: 31,
+          name: "Compact RGB Keyboard",
+          type: "Keyboard",
+          price: 69.99,
+          brand: "Logitech",
+        },
+        {
+          id: 32,
+          name: 'Smart TV 60" UHD',
+          type: "TV",
+          price: 679.99,
+          brand: "LG",
+        },
+        {
+          id: 33,
+          name: "Frameless Monitor",
+          type: "Monitor",
+          price: 189.99,
+          brand: "Logitech",
+        },
+        {
+          id: 34,
+          name: "Bluetooth Silent Mouse",
+          type: "Mouse",
+          price: 22.99,
+          brand: "Sony",
+        },
+        {
+          id: 35,
+          name: "Ultra-slim Keyboard",
+          type: "Keyboard",
+          price: 29.99,
+          brand: "Samsung",
+        },
+        {
+          id: 36,
+          name: 'Smart Android TV 40"',
+          type: "TV",
+          price: 399.99,
+          brand: "Sony",
+        },
+        {
+          id: 37,
+          name: "Dual HDMI Monitor",
+          type: "Monitor",
+          price: 259.99,
+          brand: "Samsung",
+        },
+        {
+          id: 38,
+          name: "Rechargeable Mouse",
+          type: "Mouse",
+          price: 44.99,
+          brand: "LG",
+        },
+        {
+          id: 39,
+          name: "Ergo Wireless Keyboard",
+          type: "Keyboard",
+          price: 64.99,
+          brand: "Logitech",
+        },
+        {
+          id: 40,
+          name: 'Neo QLED TV 55"',
+          type: "TV",
+          price: 899.99,
+          brand: "Samsung",
+        },
+        {
+          id: 41,
+          name: "Full HD Portable Monitor",
+          type: "Monitor",
+          price: 189.99,
+          brand: "LG",
+        },
+        {
+          id: 42,
+          name: "Precision Gaming Mouse",
+          type: "Mouse",
+          price: 59.99,
+          brand: "Logitech",
+        },
+        {
+          id: 43,
+          name: "Multimedia Keyboard",
+          type: "Keyboard",
+          price: 39.99,
+          brand: "Sony",
+        },
+        {
+          id: 44,
+          name: 'LED Smart TV 42"',
+          type: "TV",
+          price: 379.99,
+          brand: "LG",
+        },
+        {
+          id: 45,
+          name: "Anti-glare Office Monitor",
+          type: "Monitor",
+          price: 209.99,
+          brand: "Sony",
+        },
+        {
+          id: 46,
+          name: "Silent Travel Mouse",
+          type: "Mouse",
+          price: 27.99,
+          brand: "Samsung",
+        },
+        {
+          id: 47,
+          name: "Compact Wireless Keyboard",
+          type: "Keyboard",
+          price: 54.99,
+          brand: "LG",
+        },
+        {
+          id: 48,
+          name: 'HDR Smart TV 58"',
+          type: "TV",
+          price: 699.99,
+          brand: "Sony",
+        },
+        {
+          id: 49,
+          name: "4K Gaming Monitor",
+          type: "Monitor",
+          price: 459.99,
+          brand: "Samsung",
+        },
+        {
+          id: 50,
+          name: "Ambidextrous Mouse",
+          type: "Mouse",
+          price: 34.99,
+          brand: "Sony",
+        },
+      ];
+
+      // Render products
+      function renderProducts(data) {
+        const container = document.getElementById("productContainer");
+        container.innerHTML = "";
+
+        if (data.length === 0) {
+          container.innerHTML =
+            '<p class="text-center text-muted">No products found.</p>';
+          return;
+        }
+
+        data.forEach((product) => {
+          const card = `
+      <div class="col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">${product.name}</h5>
+            <p class="card-text mb-1"><strong>ID:</strong> ${product.id}</p>
+            <p class="card-text mb-1"><strong>Type:</strong> ${product.type}</p>
+            <p class="card-text mb-1"><strong>Brand:</strong> ${
+              product.brand
+            }</p>
+            <p class="card-text"><strong>Price:</strong> $${product.price.toFixed(
+              2
+            )}</p>
+          </div>
+        </div>
+      </div>
+    `;
+          container.innerHTML += card;
+        });
+      }
+
+      // Search and Filter
+      function applyFilters() {
+        const searchValue = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const typeValue = document.getElementById("typeFilter").value;
+        const brandValue = document.getElementById("brandFilter").value;
+        const filtered = products.filter((p) => {
+          const matchesSearch =
+            p.name.toLowerCase().includes(searchValue) ||
+            p.id.toString().includes(searchValue);
+          const matchesType = typeValue ? p.type === typeValue : true;
+          const matchesBrand = brandValue ? p.brand === brandValue : true;
+          return matchesSearch && matchesType && matchesBrand;
+        });
+
+        renderProducts(filtered);
+      }
+
+      // Event Listeners
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", applyFilters);
+      document
+        .getElementById("typeFilter")
+        .addEventListener("change", applyFilters);
+      document
+        .getElementById("brandFilter")
+        .addEventListener("change", applyFilters);
+
+      // Initial render
+      renderProducts(products);
+    </script>
+  </body>
+</html>

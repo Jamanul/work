@@ -1,219 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script>
-        const apartments = [
-  {
-    id: 1,
-    apartmentName: "Green View Apartment",
-    roomCount: 3,
-    floor: "5th",
-    details: "Spacious rooms with balcony, near park.",
-    src:"./assets/1.jpg"
-  },
-  {
-    id: 2,
-    apartmentName: "Sunrise Towers",
-    roomCount: 2,
-    floor: "3rd",
-    details: "Modern apartment with gym access.",
-    src:"./assets/2.jpg"
-  },
-  {
-    id: 3,
-    apartmentName: "Lakewood Residency",
-    roomCount: 4,
-    floor: "7th",
-    details: "Lake-facing apartment with large windows.",
-    src:"./assets/1.jpg"
-  },
-  {
-    id: 4,
-    apartmentName: "Hilltop Heights",
-    roomCount: 3,
-    floor: "6th",
-    details: "Panoramic view with rooftop access.",
-    src:"./assets/2.jpg"
-  },
-  {
-    id: 5,
-    apartmentName: "Skyline Plaza",
-    roomCount: 2,
-    floor: "2nd",
-    details: "Near shopping mall and public transport.",
-    src:"./assets/1.jpg"
-  },
-  {
-    id: 6,
-    apartmentName: "Palm Court",
-    roomCount: 1,
-    floor: "1st",
-    details: "Budget-friendly with garden access.",
-    src:"./assets/2.jpg"
-  },
-  {
-    id: 7,
-    apartmentName: "Cityscape Towers",
-    roomCount: 3,
-    floor: "4th",
-    details: "Includes parking and 24/7 security.",
-    src:"./assets/1.jpg"
-  },
-  {
-    id: 8,
-    apartmentName: "Ocean Breeze Villas",
-    roomCount: 5,
-    floor: "Ground",
-    details: "Luxury apartment near the beach.",
-    src:"./assets/2.jpg"
-  },
-  {
-    id: 9,
-    apartmentName: "The Urban Nest",
-    roomCount: 2,
-    floor: "3rd",
-    details: "Smart home features included.",
-    src:"./assets/1.jpg"
-  },
-  {
-    id: 10,
-    apartmentName: "Crystal Heights",
-    roomCount: 4,
-    floor: "8th",
-    details: "Fully furnished with mountain view.",
-    src:"./assets/2.jpg"
-  }
-];
-
-        
-        </script>
+      const apartments = [
+        {
+          id: 1,
+          apartmentName: "Green View Apartment",
+          roomCount: 3,
+          floor: "5th",
+          details: "Spacious rooms with balcony, near park.",
+          src: "./assets/1.jpg",
+        },
+        {
+          id: 2,
+          apartmentName: "Sunrise Towers",
+          roomCount: 2,
+          floor: "3rd",
+          details: "Modern apartment with gym access.",
+          src: "./assets/2.jpg",
+        },
+        {
+          id: 3,
+          apartmentName: "Lakewood Residency",
+          roomCount: 4,
+          floor: "7th",
+          details: "Lake-facing apartment with large windows.",
+          src: "./assets/1.jpg",
+        },
+        {
+          id: 4,
+          apartmentName: "Hilltop Heights",
+          roomCount: 3,
+          floor: "6th",
+          details: "Panoramic view with rooftop access.",
+          src: "./assets/2.jpg",
+        },
+        {
+          id: 5,
+          apartmentName: "Skyline Plaza",
+          roomCount: 2,
+          floor: "2nd",
+          details: "Near shopping mall and public transport.",
+          src: "./assets/1.jpg",
+        },
+        {
+          id: 6,
+          apartmentName: "Palm Court",
+          roomCount: 1,
+          floor: "1st",
+          details: "Budget-friendly with garden access.",
+          src: "./assets/2.jpg",
+        },
+        {
+          id: 7,
+          apartmentName: "Cityscape Towers",
+          roomCount: 3,
+          floor: "4th",
+          details: "Includes parking and 24/7 security.",
+          src: "./assets/1.jpg",
+        },
+        {
+          id: 8,
+          apartmentName: "Ocean Breeze Villas",
+          roomCount: 5,
+          floor: "Ground",
+          details: "Luxury apartment near the beach.",
+          src: "./assets/2.jpg",
+        },
+        {
+          id: 9,
+          apartmentName: "The Urban Nest",
+          roomCount: 2,
+          floor: "3rd",
+          details: "Smart home features included.",
+          src: "./assets/1.jpg",
+        },
+        {
+          id: 10,
+          apartmentName: "Crystal Heights",
+          roomCount: 4,
+          floor: "8th",
+          details: "Fully furnished with mountain view.",
+          src: "./assets/2.jpg",
+        },
+      ];
+    </script>
     <style>
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
-        body{
-            background-color: #f7f7f7;
-        }
-        .heading{
-            font-size: 100px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .apartment-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  font-family: Arial, sans-serif;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      body {
+        background-color: #f7f7f7;
+      }
+      .heading {
+        font-size: 100px;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .apartment-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
 
-.apartment-table thead {
-  background-color: #f4f4f4;
-}
+      .apartment-table thead {
+        background-color: #f4f4f4;
+      }
 
-.apartment-table th,
-.apartment-table td {
-  text-align: left;
-  padding: 12px 16px;
-  border: 1px solid #ddd;
-}
+      .apartment-table th,
+      .apartment-table td {
+        text-align: left;
+        padding: 12px 16px;
+        border: 1px solid #ddd;
+      }
 
-.apartment-table tbody tr:nth-child(even) {
-  background-color: #fafafa;
-}
+      .apartment-table tbody tr:nth-child(even) {
+        background-color: #fafafa;
+      }
 
-.details-button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.2s ease;
-}
+      .details-button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 8px 14px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.2s ease;
+      }
 
-.details-button:hover {
-  background-color: #0056b3;
-}
-.container{
-    max-width: 1440px;
-    margin: 0px auto;
-}
-.apartment-card{
-    height: 250px;
-    width: 350px;
-    display: flex;
-    flex-direction: column;
+      .details-button:hover {
+        background-color: #0056b3;
+      }
+      .container {
+        max-width: 1440px;
+        margin: 0px auto;
+      }
+      .apartment-card {
+        height: 250px;
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+      }
+      .apartment-img {
+        width: 100%;
+      }
+      .apartment-table tr {
+        position: relative;
+      }
+      .apartment-card {
+        width: 250px;
+        padding: 12px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        pointer-events: none;
+      }
 
-}
-.apartment-img{
-    width: 100%;
-}
-.apartment-table tr{
-    position: relative;
-}
-.apartment-card {
-    width: 250px;
-    padding: 12px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-    pointer-events: none;
-  }
+      .apartment-img-container {
+        width: 100%;
+        height: 140px;
+        overflow: hidden;
+        border-radius: 6px;
+        margin-bottom: 10px;
+      }
 
-  .apartment-img-container {
-    width: 100%;
-    height: 140px;
-    overflow: hidden;
-    border-radius: 6px;
-    margin-bottom: 10px;
-  }
+      .apartment-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
 
-  .apartment-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+      .apartment-info h4 {
+        margin: 0;
+        font-size: 16px;
+      }
 
-  .apartment-info h4 {
-    margin: 0;
-    font-size: 16px;
-  }
-
-  .apartment-info p {
-    margin: 4px 0;
-    font-size: 14px;
-    color: #555;
-  }
-
+      .apartment-info p {
+        margin: 4px 0;
+        font-size: 14px;
+        color: #555;
+      }
     </style>
-</head>
-<body>
-    <main class='container'>
-        <h2 class="heading">A Table</h2>
-        <table class="apartment-table">
-            <thead>
-              <tr>
-                <th>Apartment Name</th>
-                <th>Room Count</th>
-                <th>Floor</th>
-                <th>Details</th>
-               
-              </tr>
-            </thead>
-            <tbody id="apartment-body">
-        
-        
-            </tbody>
-          </table>
-          <!-- <div class="apartment-card">
+  </head>
+  <body>
+    <main class="container">
+      <h2 class="heading">A Table</h2>
+      <table class="apartment-table">
+        <thead>
+          <tr>
+            <th>Apartment Name</th>
+            <th>Room Count</th>
+            <th>Floor</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody id="apartment-body"></tbody>
+      </table>
+      <!-- <div class="apartment-card">
             <div>
                 <img class="apartment-img" src="./assets/1.jpg" alt="">
             </div>
@@ -224,37 +216,36 @@
             </div>
           </div> -->
     </main>
-</body>
-<script>
-const apartmentBody =document.getElementById('apartment-body')
-apartments.map(apartment=>
-   {
-    let tr =document.createElement('tr');
-    tr.classList.add('apartment-tr');
-    tr.setAttribute('apartmentNo', apartment.id);
-        tr.innerHTML=` <td>${apartment.apartmentName}</td>
+  </body>
+  <script>
+    const apartmentBody = document.getElementById("apartment-body");
+    apartments.map((apartment) => {
+      let tr = document.createElement("tr");
+      tr.classList.add("apartment-tr");
+      tr.setAttribute("apartmentNo", apartment.id);
+      tr.innerHTML = ` <td>${apartment.apartmentName}</td>
                 <td>${apartment.roomCount}</td>
                 <td>${apartment.floor}</td>
                 <td>${apartment.details}</td>
-             `
-        apartmentBody.appendChild(tr)
-   }
-)
-//  to show the card
-const tableRows =document.querySelectorAll('.apartment-tr')
-// const apartmentCard =document.querySelector('.apartment-card')
-tableRows.forEach(tableRow=>{
-    tableRow.addEventListener('mouseenter', () => {
-       const apartmentNumber= tableRow.getAttribute('apartmentNo')
+             `;
+      apartmentBody.appendChild(tr);
+    });
+    //  to show the card
+    const tableRows = document.querySelectorAll(".apartment-tr");
+    // const apartmentCard =document.querySelector('.apartment-card')
+    tableRows.forEach((tableRow) => {
+      tableRow.addEventListener("mouseenter", () => {
+        const apartmentNumber = tableRow.getAttribute("apartmentNo");
 
-      const apartmentCardDetails = apartments.find(apartment=>apartment.id==apartmentNumber)
+        const apartmentCardDetails = apartments.find(
+          (apartment) => apartment.id == apartmentNumber
+        );
 
-      
-    // Create the card
-    apartmentCard = document.createElement('div');
-    apartmentCard.classList.add('apartment-card');
-    
-    apartmentCard.innerHTML = `
+        // Create the card
+        apartmentCard = document.createElement("div");
+        apartmentCard.classList.add("apartment-card");
+
+        apartmentCard.innerHTML = `
       <div class="apartment-img-container">
         <img class="apartment-img" src="${apartmentCardDetails.src}" alt="Apartment">
       </div>
@@ -265,28 +256,25 @@ tableRows.forEach(tableRow=>{
       </div>
     `;
 
-    apartmentCard.style.position = 'absolute';
+        apartmentCard.style.position = "absolute";
 
-// Position the card on top of the table row
-apartmentCard.style.top = `${tableRow.offsetTop - apartmentCard.offsetHeight - 250}px`; // 5px gap above
+        // Position the card on top of the table row
+        apartmentCard.style.top = `${
+          tableRow.offsetTop - apartmentCard.offsetHeight - 250
+        }px`; // 5px gap above
 
-// Center it horizontally relative to the table row
-const rowCenter =  tableRow.offsetWidth / 2;
-const cardWidth = apartmentCard.offsetWidth;
-apartmentCard.style.left = `${rowCenter - cardWidth / 2}px`;
+        // Center it horizontally relative to the table row
+        const rowCenter = tableRow.offsetWidth / 2;
+        const cardWidth = apartmentCard.offsetWidth;
+        apartmentCard.style.left = `${rowCenter - cardWidth / 2}px`;
 
-
-
-    document.body.appendChild(apartmentCard);
-  });
-  tableRow.addEventListener('mouseleave', () => {
-    if (apartmentCard) {
-      apartmentCard.remove();
-    }
-  });
-})
-
-
-
-</script>
+        document.body.appendChild(apartmentCard);
+      });
+      tableRow.addEventListener("mouseleave", () => {
+        if (apartmentCard) {
+          apartmentCard.remove();
+        }
+      });
+    });
+  </script>
 </html>
