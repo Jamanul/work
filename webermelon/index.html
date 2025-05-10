@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f5f5f5;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+      }
+
+      .container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .dot {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background-color: #2a9d8f;
+        border-radius: 50%;
+        transition: transform 0.3s ease-out;
+      }
+
+      .text-guide {
+        position: absolute;
+        font-size: 72px;
+        font-weight: bold;
+        color: transparent;
+        z-index: -1;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="text-guide" id="text-guide">webermelon</div>
+    </div>
+
+    <script>
+      // Create dots to form the text "webermelon"
+      const container = document.getElementById("container");
+      const textGuide = document.getElementById("text-guide");
+      const dots = [];
+
+      // Wait for the font to load
+      document.fonts.ready.then(() => {
+        // Get text dimensions
+        const textRect = textGuide.getBoundingClientRect();
+
+        // Create a canvas element to get text pixels
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        // Set canvas dimensions
+        canvas.width = textRect.width;
+        canvas.height = textRect.height;
+
+        // Draw the text
+        ctx.font = "72px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText("webermelon", 0, textRect.height * 0.8);
+
+        // Get image data
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const pixels = imageData.data;
+
+        // Sample pixels to create dots
+        const dotSpacing = 2; // Increase this number for fewer dots
+        const colorThreshold = 50; // Threshold for detecting text pixels
+
+        for (let y = 0; y < canvas.height; y += dotSpacing) {
+          for (let x = 0; x < canvas.width; x += dotSpacing) {
+            const index = (y * canvas.width + x) * 4;
+            // Check if this is a text pixel (non-transparent)
+            if (pixels[index + 3] > colorThreshold) {
+              createDot(x, y);
+            }
+          }
+        }
+
+        // Remove the guide text
+        textGuide.remove();
+      });
+
+      function createDot(x, y) {
+        const dot = document.createElement("div");
+        dot.className = "dot";
+
+        // Position the dot relative to container center
+        dot.style.left = `calc(50% - ${400 - x}px)`;
+        dot.style.top = `calc(50% - ${150 - y}px)`;
+
+        // Store original position
+        dot.dataset.x = x;
+        dot.dataset.y = y;
+
+        container.appendChild(dot);
+        dots.push(dot);
+      }
+
+      // Mouse move handler
+      container.addEventListener("mousemove", (e) => {
+        const containerRect = container.getBoundingClientRect();
+        const mouseX = e.clientX - containerRect.left;
+        const mouseY = e.clientY - containerRect.top;
+
+        dots.forEach((dot) => {
+          const dotRect = dot.getBoundingClientRect();
+          const dotCenterX =
+            dotRect.left + dotRect.width / 2 - containerRect.left;
+          const dotCenterY =
+            dotRect.top + dotRect.height / 2 - containerRect.top;
+
+          // Calculate distance from mouse to dot
+          const dx = mouseX - dotCenterX;
+          const dy = mouseY - dotCenterY;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          // Move dot away from mouse if close enough
+          if (distance < 40) {
+            const angle = Math.atan2(dy, dx);
+            const pushStrength = (40 - distance) / 8;
+            const pushX = -Math.cos(angle) * pushStrength;
+            const pushY = -Math.sin(angle) * pushStrength;
+
+            dot.style.transform = `translate(${pushX}px, ${pushY}px)`;
+          } else {
+            dot.style.transform = "translate(0, 0)";
+          }
+        });
+      });
+
+      // Reset dots when mouse leaves
+      container.addEventListener("mouseleave", () => {
+        dots.forEach((dot) => {
+          dot.style.transform = "translate(0, 0)";
+        });
+      });
+    </script>
+  </body>
+</html>
